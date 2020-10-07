@@ -1,0 +1,58 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        app_id = "com.mykoatlincoadingsample"
+        production_version_code = 1
+        production_version_name = "1.0"
+        development_version_code = 1
+        development_version_name = "1.0"
+        kotlin_version = '1.4.0'
+        kotlin_core = '1.3.2'
+        kotlin_coroutines = '1.3.9'
+        roomVersion = '2.2.5'
+        androidx_appcompact = '1.2.0'
+        androidx_constraint = '2.0.2'
+        androidx_recycler = '1.1.0'
+        androidx_constraint_scope = '2.3.0-beta01'
+        compileVersion = 30
+        btoolsVersion = "30.0.2"
+        minSDK = 19
+        targetSDK = 30
+        retrofitVersion = '2.9.0'
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    config_type = "String"
+    base_key = "BASE_URL"
+    dev_base = '"http://dummy.restapiexample.com/api/v1/"'
+    prod_base = '"http://prod.dummy.restapiexample.com/api/v1/"'
+    dev_dimentions = "developmentVersion"
+    prod_dimentions = "productionVersion"
+    dev_suffix = ".dev"
+    prod_suffix = ".prod"
+    progurd_name = 'proguard-android-optimize.txt'
+    progurd_rule = 'proguard-rules.pro'
+}

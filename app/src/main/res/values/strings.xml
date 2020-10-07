@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyKotlinCoadingSample</string>
+    <string name="emp_list">Employee List</string>
+    <string name="no_connection_available">Internet connection is not available!</string>
+    <string name="processing_wait">Please wait</string>
+    <string name="name">Name : %1$s</string>
+    <string name="age">Age : %1$s</string>
+    <string name="salary">Salary : %1$s</string>
+
+</resources>

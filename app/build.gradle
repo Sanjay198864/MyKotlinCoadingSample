@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion compileVersion
+    buildToolsVersion btoolsVersion
+
+    defaultConfig {
+        applicationId app_id
+        minSdkVersion minSDK
+        targetSdkVersion targetSDK
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(progurd_name), progurd_rule
+        }
+    }
+
+    buildFeatures { dataBinding = true }
+
+    productFlavors {
+        development {
+            buildConfigField config_type, base_key, dev_base
+            flavorDimensions dev_dimentions
+            applicationIdSuffix dev_suffix
+            versionCode development_version_code
+            versionName development_version_name
+        }
+        production {
+            buildConfigField config_type, base_key, prod_base
+            flavorDimensions prod_dimentions
+            applicationIdSuffix prod_suffix
+            versionCode production_version_code
+            versionName production_version_name
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$kotlin_core"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompact"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint"
+    implementation "androidx.recyclerview:recyclerview:$androidx_recycler"
+
+    /*---------- Kotlin coroutines -----------*/
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines"
+
+    /*---------- Kotlin Coroutine For LifecycleScope(Activity), viewLifecycleScope(Fragment), ViewModelScope, LiveDataScope   -----------*/
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidx_constraint_scope"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_constraint_scope"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidx_constraint_scope"
+
+    /*--------------- square up retrofit2 dependency ---------------*/
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    /*--------------- Room components ---------------*/
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"     //Kotlin Extensions and Coroutines support for Room
+    testImplementation "androidx.room:room-testing:$roomVersion"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+}
